@@ -754,6 +754,13 @@ body.page-template-page-careers .hero-section {
     height: 40vh;
 }
 
+body.page-template-page-giftcards .hero-section {
+    height: 40vh;
+    margin-bottom: 60px;
+    margin-top: -45px;
+}
+
+
 .offers-hero-content {
     position: absolute;
     bottom: 40px;
@@ -793,8 +800,8 @@ body.page-template-page-careers .hero-section {
         height: 25vh;
     }
 
-    .hero-video {
-        object-fit: none !important;
+    .hero-retreats-video {
+        object-fit: cover !important;
     }
 }
 
@@ -8043,4 +8050,921 @@ a.item-value:hover {
     .apply-now-text {
         display: inline-block;
     }
+}
+
+/* Retreats Section */
+.retreats-hero-video-heading {
+    font-size: 50px;
+    font-weight: 400;
+    line-height: 1.2;
+    color: #fff;
+}
+
+/* Retreats Hero Section */
+.retreats-hero-text-overlay {
+    position: absolute;
+    top: 35%;
+    left: 5%;
+    transform: translateY(-50%);
+    color: #fff;
+    max-width: 800px; /* Adjust as needed */
+    z-index: 99;
+}
+
+.retreats-hero-text-overlay .hero-main-heading {
+    font-size: 48px; /* Adjust as needed */
+    font-weight: bold;
+    line-height: 1.2;
+}
+
+@media (max-width: 768px) {
+    .retreats-hero-text-overlay .hero-main-heading {
+        font-size: 28px; /* Adjust as needed */
+    }
+
+    .retreats-hero-text-overlay {
+        position: absolute;
+        top: 25%;
+        max-width: 400px; /* Adjust as needed */
+    }
+    .retreats-hero-icons-container .hero-icon span {
+        font-size: 9px !important; /* Adjust as needed */
+    }
+
+    .retreats-hero-icons-container .hero-icon img {
+        width: 30px !important; /* Adjust as needed */
+        height: 30px !important; /* Adjust as needed */
+    }
+}
+
+.retreats-hero-text-overlay .hero-main-heading .highlight {
+    font-style: italic;
+}
+
+.retreats-hero-icons-container {
+    position: absolute;
+    bottom: 20px; /* Adjust as needed */
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 30px; /* Adjust as needed */
+    align-items: center;
+    z-index: 99;
+}
+
+.retreats-hero-icons-container .hero-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: #fff;
+}
+
+.retreats-hero-icons-container .hero-icon img {
+    width: 40px; /* Adjust as needed */
+    height: 40px; /* Adjust as needed */
+    margin-bottom: 10px;
+}
+
+.retreats-hero-icons-container .hero-icon span {
+    font-size: 12px; /* Adjust as needed */
+    font-weight: bold;
+}
+
+.back-gradient {
+    z-index: 10;
+    background-image: linear-gradient(#0000 60%, #000000bf), linear-gradient(350deg, #0000, #0009);
+    position: absolute;
+    inset: 0%;
+}
+
+.retreats-entry-heading {
+    font-size: 20px;
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+/* MICE Packages Section */
+.mice-packages-section {
+    padding: 80px 0;
+    background-color: #fff; /* Assuming a white background from the image */
+}
+
+.section-header-packages {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.section-title-packages {
+    font-family: 'Playfair Display', serif; /* Assuming similar font as other titles */
+    font-size: 30px; /* Adjust as needed */
+    color: #414042; /* Adjust as needed */
+    text-transform: uppercase;
+    letter-spacing: 2px; /* Adjust as needed */
+    margin-bottom: 20px;
+}
+
+.section-description-packages {
+    font-family: 'Montserrat', sans-serif; /* Assuming similar font */
+    font-size: 14px; /* Adjust as needed */
+    color: #555; /* Adjust as needed */
+    line-height: 1.7;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.package-main-content {
+    background-color: #f9f6f2; /* Light beige background from image */
+    padding: 40px;
+    /* width: 1000px; */ /* Removed fixed width for better responsiveness */
+    max-width: 1000px; /* Kept max-width for larger screens */
+    margin: 0 auto;
+}
+
+.package-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 26px; /* Adjust as needed */
+    color: #8a6d46; /* Gold-ish color from image */
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 10px;
+    letter-spacing: 1px;
+}
+
+.package-subtitle {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px; /* Adjust as needed */
+    color: #777;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.package-details-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 40px;
+    align-items: start;
+}
+
+.package-features ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.package-features li {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px; /* Adjust as needed */
+    color: #333;
+    line-height: 1.8;
+    margin-bottom: 5px;
+    padding-left: 5px;
+    position: relative;
+}
+
+.package-features li::before {
+    content: '\2022'; /* Bullet point */
+    color: #8a6d46; /* Gold-ish color */
+    font-weight: bold;
+    display: inline-block; 
+    width: 1em;
+    margin-left: -1em;
+    position: absolute;
+    left: 0;
+}
+
+.package-pricing .starting-from {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
+    color: #555;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+.package-pricing .price-box {
+    border: 1px solid #d3c1ad; /* Border color from image */
+    padding: 20px;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.package-pricing .price-box p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px; /* Adjust as needed */
+    color: #333;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.package-pricing .price-box strong {
+    color: #000;
+}
+
+.package-contact-banner {
+    border: 1px solid #d3c1ad;
+    padding: 20px;
+    margin-top: 40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fcfcfc;
+}
+
+.contact-banner-text p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px; /* Adjust as needed */
+    color: #333;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.contact-banner-details p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px; /* Adjust as needed */
+    color: #333;
+    margin: 0;
+}
+
+.contact-banner-details a {
+    color: #8a6d46; /* Gold-ish color */
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.contact-banner-details a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive adjustments */
+@media (max-width: 991px) {
+    .package-details-grid {
+        grid-template-columns: 1fr;
+    }
+    .package-pricing {
+        margin-top: 30px;
+    }
+    .package-contact-banner {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+}
+
+@media (max-width: 767px) {
+    .section-title-packages {
+        font-size: 28px;
+    }
+    .package-title {
+        font-size: 26px;
+    }
+    .package-main-content {
+        padding: 20px;
+    }
+    .package-features li,
+    .package-pricing .price-box p,
+    .contact-banner-text p,
+    .contact-banner-details p {
+        font-size: 14px;
+    }
+
+    .break-line {
+        width: 80% !important;
+    }
+}
+
+.break-line {
+    background-color: #c2ae8f;
+    width: 100%;
+    max-width: 800px;
+    height: 1px;
+    margin: 0 auto;
+}
+
+.retreats-entry-description {
+    font-size: 16px;
+}
+
+.alt-package {
+    background-color: #fff;
+    border: 1px solid #d3c1ad;
+    border-radius: 0;
+}
+
+.package-mt {
+    margin-top: 40px;
+}
+
+/* Corporate Event Packages Section */
+.corporate-event-packages-section {
+    padding: 80px 0;
+    background-color: #fff; /* Assuming a white background */
+}
+
+.corporate-event-packages-section .section-header-packages.text-center {
+    margin-bottom: 60px;
+}
+
+.event-packages-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+}
+
+.event-package-item {
+    background-color: #f9f6f2; /* Light beige background from image */
+    padding: 30px;
+    border-radius: 0; /* No border-radius as per image */
+    text-align: center;
+}
+
+.event-package-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; /* Adjust as needed */
+    color: #8a6d46; /* Gold-ish color */
+    text-transform: uppercase;
+    margin-bottom: 25px;
+    letter-spacing: 1px;
+    min-height: 60px; /* Ensure consistent height for titles */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.event-package-includes {
+    text-align: left;
+    margin-bottom: 20px;
+}
+
+.event-package-includes h4 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px; /* Adjust as needed */
+    color: #333;
+    margin-bottom: 15px;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.event-package-includes dl {
+    margin: 0;
+}
+
+.event-package-includes dt {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px; /* Adjust as needed */
+    color: #8a6d46; /* Gold-ish color */
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+.event-package-includes dd {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px; /* Adjust as needed */
+    color: #555;
+    line-height: 1.6;
+    margin-left: 0;
+    margin-bottom: 10px;
+}
+
+.event-package-price-box,
+.event-package-capacity-box {
+    border: 1px solid #d3c1ad; /* Border color from image */
+    padding: 15px;
+    margin-top: 20px;
+}
+
+.event-package-label {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 13px; /* Adjust as needed */
+    color: #8a6d46; /* Gold-ish color */
+    text-transform: uppercase;
+    margin-bottom: 5px;
+}
+
+.event-package-value {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px; /* Adjust as needed */
+    color: #333;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* Responsive adjustments for Corporate Event Packages */
+@media (max-width: 1024px) {
+    .event-packages-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 767px) {
+    .event-packages-grid {
+        grid-template-columns: 1fr;
+    }
+    .event-package-title {
+        font-size: 20px;
+        min-height: auto; /* Allow title height to adjust on mobile */
+        margin-bottom: 20px;
+    }
+    .event-package-item {
+        padding: 20px;
+    }
+    .event-package-includes h4 {
+        font-size: 15px;
+    }
+    .event-package-includes dt {
+        font-size: 13px;
+    }
+    .event-package-includes dd,
+    .event-package-label,
+    .event-package-value {
+        font-size: 12px;
+    }
+}
+
+/* Why Marina Section */
+.why-marina-section {
+    background-image: url('images/retreats/other/why-marina.webp'); /* Replace with your image path */
+    background-size: cover;
+    background-position: center;
+    padding: 100px 0; /* Adjust padding as needed */
+    text-align: center;
+    position: relative; /* For pseudo-element overlay if needed */
+    height: 800px;
+}
+
+/* Optional: Add a dark overlay to make text more readable */
+.why-marina-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Adjust opacity as needed */
+    z-index: 1;
+}
+
+.why-marina-section .container {
+    position: relative; /* To ensure content is above the overlay */
+    z-index: 2;
+}
+
+.why-marina-section .section-title {
+    font-family: 'Playfair Display', serif; /* Or your desired font */
+    font-size: 36px; /* Adjust as needed */
+    color: #fff; /* White text for dark background */
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin: 0;
+}
+
+/* Responsive adjustments for Why Marina Section */
+@media (max-width: 767px) {
+    .why-marina-section {
+        padding: 80px 0;
+        height: 600px;
+    }
+    .why-marina-section .section-title {
+        font-size: 24px;
+    }
+}
+
+/* Why Marina Grid Section */
+.why-marina-grid-section {
+    padding: 80px 0;
+    background-color: #fff; /* Assuming white background */
+}
+
+.marina-features-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px; /* Gap between grid items */
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.marina-feature-item {
+    padding: 30px;
+    background-color: #fff; /* Very light beige, almost white, as per image */
+    border-style: solid;
+    border-width: 1px 1px 2px;
+    border-color: #efeae2 #efeae2 #d3c1ad;
+}
+
+.marina-feature-item .feature-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 22px; /* Adjust as needed */
+    color: #333; /* Dark grey/black for title */
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+
+.marina-feature-item ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.marina-feature-item li {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px; /* Adjust as needed */
+    color: #555; /* Medium grey for text */
+    line-height: 1.7;
+    margin-bottom: 10px;
+    padding-left: 5px; /* Space for the bullet */
+    position: relative;
+}
+
+.marina-feature-item li::before {
+    content: '\2022'; /* Bullet character */
+    color: #8a6d46; /* Gold-ish color for bullet */
+    font-weight: bold;
+    display: inline-block;
+    width: 1em;
+    margin-left: -1.1em; /* Adjust to align bullet */
+    position: absolute;
+    left: 10px; /* Position of the bullet */
+}
+
+.marina-feature-item li strong {
+    color: #333; /* Darker text for the strong part */
+}
+
+/* Responsive adjustments for Why Marina Grid Section */
+@media (max-width: 991px) {
+    .marina-features-grid {
+        gap: 30px;
+    }
+    .marina-feature-item {
+        padding: 25px;
+    }
+}
+
+@media (max-width: 767px) {
+    .marina-features-grid {
+        grid-template-columns: 1fr; /* Stack items on smaller screens */
+    }
+    .marina-feature-item .feature-title {
+        font-size: 20px;
+    }
+    .marina-feature-item li {
+        font-size: 14px;
+        padding-left: 10px;
+    }
+}
+
+/* Vision and Contact Section */
+.vision-contact-section {
+    padding: 80px 0;
+    background-color: #fff; /* Assuming white background */
+}
+
+.vision-contact-section .container {
+    max-width: 900px; /* Content seems more constrained in width */
+    margin: 0 auto;
+}
+
+.vision-content {
+    margin-bottom: 60px;
+}
+
+.vision-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 36px; /* Adjust as needed */
+    color: #4a4a4a; /* Dark grey from image */
+    margin-bottom: 20px;
+    font-style: italic;
+    text-align: center;
+}
+
+.vision-description {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px; /* Adjust as needed */
+    color: #555;
+    line-height: 1.7;
+    max-width: 700px; /* Constrain description width */
+    margin: 0 auto 40px auto;
+}
+
+.perfect-event-cta {
+    margin-bottom: 60px;
+    text-align: center;
+}
+
+.perfect-event-title {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 20px; /* Adjust as needed */
+    color: #333;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+.btn-outline-primary {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px; /* Adjust as needed */
+    color: #8a6d46; /* Gold-ish color */
+    border: 1px solid #d3c1ad; /* Border color from image */
+    padding: 12px 30px;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.btn-outline-primary:hover {
+    background-color: #f9f6f2; /* Light hover effect */
+    border-color: #c2ae8f;
+}
+
+.final-contact-banner {
+    border: 1px solid #d3c1ad;
+    padding: 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #fdfcfa; /* Very light beige background */
+}
+
+.final-contact-banner .contact-banner-text p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px; /* Adjust as needed */
+    color: #555;
+    margin: 0;
+    line-height: 1.6;
+}
+
+.final-contact-banner .contact-banner-details p {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15px; /* Adjust as needed */
+    color: #333;
+    margin: 0;
+    font-weight: bold; /* Bolder than previous contact banner */
+}
+
+.final-contact-banner .contact-banner-details a {
+    color: #8a6d46; /* Gold-ish color */
+    text-decoration: none;
+}
+
+.final-contact-banner .contact-banner-details a:hover {
+    text-decoration: underline;
+}
+
+/* Responsive adjustments for Vision and Contact Section */
+@media (max-width: 767px) {
+    .vision-title {
+        font-size: 28px;
+    }
+    .vision-description,
+    .final-contact-banner .contact-banner-text p,
+    .final-contact-banner .contact-banner-details p {
+        font-size: 14px;
+    }
+    .perfect-event-title {
+        font-size: 18px;
+    }
+    .btn-outline-primary {
+        font-size: 13px;
+        padding: 10px 25px;
+    }
+    .final-contact-banner {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+        padding: 20px;
+    }
+}
+
+.retreats-button {
+    z-index: 99;
+}
+
+/* MICE Packages Section */
+@media (max-width: 991px) {
+    .package-main-content {
+        width: auto; /* Allow width to be flexible */
+        margin-left: 20px; /* Add some margin for tablet */
+        margin-right: 20px;
+        padding: 30px;
+    }
+    .section-header-packages {
+        padding: 0 20px;
+    }
+    .package-details-grid {
+        grid-template-columns: 1fr;
+    }
+    .package-pricing {
+        margin-top: 30px;
+    }
+    .package-contact-banner {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+    }
+}
+
+@media (max-width: 767px) {
+    .section-header-packages {
+        padding: 0 15px; /* Add padding for smaller screens */
+        margin-bottom: 40px;
+    }
+    .section-title-packages {
+        font-size: 24px; /* Adjusted for mobile */
+    }
+    .section-description-packages {
+        font-size: 13px; /* Adjusted for mobile */
+    }
+    .package-main-content {
+        padding: 20px;
+        margin-left: 10px; /* Reduce margin for mobile */
+        margin-right: 10px;
+    }
+    .package-title {
+        font-size: 22px; /* Adjusted for mobile */
+    }
+    .package-subtitle {
+        font-size: 14px; /* Adjusted for mobile */
+        margin-bottom: 30px;
+    }
+    .package-features li,
+    .package-pricing .price-box p,
+    .contact-banner-text p,
+    .contact-banner-details p {
+        font-size: 13px; /* Adjusted for mobile */
+    }
+    .package-features li {
+        padding-left: 10px; /* Adjust bullet padding */
+        margin-bottom: 8px;
+    }
+    .package-features li::before {
+        left: 10px; /* Adjust bullet position */
+    }
+    .package-pricing .starting-from {
+        font-size: 12px; /* Adjusted for mobile */
+    }
+     .package-pricing .price-box {
+        padding: 15px;
+    }
+    .package-contact-banner {
+        padding: 15px;
+        margin-top: 30px;
+    }
+}
+
+@media (max-width: 480px) { /* Specific adjustments for very small screens if needed */
+    .section-title-packages {
+        font-size: 22px;
+    }
+    .package-main-content {
+        margin-left: 5px;
+        margin-right: 5px;
+        padding: 15px;
+    }
+    .package-title {
+        font-size: 20px;
+    }
+    .package-subtitle {
+        font-size: 13px;
+    }
+    .package-features li,
+    .package-pricing .price-box p,
+    .contact-banner-text p,
+    .contact-banner-details p {
+        font-size: 12px;
+    }
+}
+
+.mt-2 {
+    margin-top: 20px;
+}
+
+/* Choices.js Customization for Event Filters */
+.events-filter-bar .choices {
+    margin-bottom: 0; /* Remove default bottom margin if any */
+    font-family: "Montserrat", sans-serif; /* Match your site's font */
+}
+
+.events-filter-bar .choices__inner {
+    background-color: #fff;
+    border: 1px solid #ccc; /* Match image border */
+    border-radius: 4px; /* Slightly rounded corners */
+    padding: 6px 12px; /* Adjust padding to match other inputs */
+    min-height: auto; /* Override default min-height if needed */
+    font-size: 14px; /* Match image font size */
+    color: #333;
+}
+
+.events-filter-bar .choices[data-type*="select-one"]::after {
+    /* Style the dropdown arrow */
+    border-color: #333 transparent transparent transparent;
+    border-width: 5px;
+    right: 11.5px; /* Adjust position */
+    margin-top: -2.5px; /* Center arrow */
+    transition: transform 0.2s ease;
+}
+
+.events-filter-bar .choices[data-type*="select-one"].is-open::after {
+    border-color: transparent transparent #333 transparent;
+    margin-top: -7.5px; /* Adjust position when open */
+}
+
+.events-filter-bar .choices__list--dropdown {
+    border: 1px solid #ccc;
+    border-top: none; /* Remove top border as it's part of choices__inner */
+    border-radius: 0 0 4px 4px;
+    background-color: #fff;
+    font-size: 14px;
+    color: #333;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.events-filter-bar .choices__list--dropdown .choices__item--selectable {
+    padding: 8px 12px; /* Adjust padding for dropdown items */
+}
+
+.events-filter-bar .choices__list--dropdown .choices__item--selectable.is-highlighted {
+    background-color: #f2f2f2; /* Highlight color on hover/focus */
+    color: #333;
+}
+
+/* You might need a wrapper around your filter elements if events-filter-bar is too general */
+/* For example, if your filters are in a div with class .event-filters-container */
+/* Then use .event-filters-container .choices instead of .events-filter-bar .choices */
+
+/* Flatpickr Customization - Date Visibility */
+.flatpickr-calendar {
+    background-color: #fff; /* Ensure calendar background is white or a light color */
+    box-shadow: 0 3px 15px rgba(0,0,0,0.15); /* Optional: add a more prominent shadow */
+}
+
+/* Ensure day numbers are visible */
+.flatpickr-day {
+    color: #333; /* A dark color for the dates */
+    opacity: 1;  /* Ensure full opacity */
+}
+
+/* Style for today's date */
+.flatpickr-day.today {
+    color: #D6A354; /* Your theme's accent color or a distinct color */
+    font-weight: bold;
+    border-color: #D6A354; /* Match border to text color */
+}
+
+/* Style for selected dates */
+.flatpickr-day.selected,
+.flatpickr-day.startRange,
+.flatpickr-day.endRange {
+    background: #D6A354; /* Your theme's accent or primary color */
+    color: #fff; /* White text on selection */
+    border-color: #D6A354;
+}
+
+/* Hover effect for dates */
+.flatpickr-day:hover {
+    background-color: #f0f0f0; /* A light gray for hover */
+    color: #333;
+}
+
+/* Disabled dates (out of month, or restricted by minDate/maxDate) */
+.flatpickr-day.disabled,
+.flatpickr-day.disabled:hover {
+    color: #ccc; /* Lighter gray for disabled dates */
+    background-color: transparent;
+    cursor: default;
+}
+
+.flatpickr-day.flatpickr-disabled{
+    cursor: not-allowed;
+    color: rgb(57 57 57 / 70%) !important;
+}
+
+/* Month and year navigation arrows */
+.flatpickr-months .flatpickr-prev-month svg,
+.flatpickr-months .flatpickr-next-month svg {
+    fill: #D6A354; /* Accent color for arrows */
+}
+
+.flatpickr-months .flatpickr-prev-month:hover svg,
+.flatpickr-months .flatpickr-next-month:hover svg {
+    fill: #b3863c; /* Darker shade for hover */
+}
+
+/* Current month text */
+.flatpickr-current-month .flatpickr-monthDropdown-months {
+    color: #333;
+    font-weight: bold;
+}
+
+/* Year input */
+.flatpickr-current-month input.cur-year {
+    color: #333;
+    font-weight: bold;
+}
+
+/* Weekdays header */
+.flatpickr-weekdaycontainer .flatpickr-weekday {
+    color: #555; /* Slightly lighter than dates */
+    font-weight: bold;
 }

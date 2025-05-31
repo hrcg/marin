@@ -17,6 +17,22 @@ function marina_bay_scripts() {
     // Swiper CSS
     wp_enqueue_style('swiper-css', 'https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css', array(), '11.0.0');
 
+    // Choices.js CSS from CDN (v9.0.1)
+    wp_enqueue_style(
+        'choices-css',
+        'https://cdn.jsdelivr.net/npm/choices.js@9.0.1/public/assets/styles/choices.min.css',
+        array(),
+        '9.0.1'
+    );
+
+    // Flatpickr CSS from CDN
+    wp_enqueue_style(
+        'flatpickr-css',
+        'https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css',
+        array(),
+        '4.6.13' // Current Flatpickr version, adjust if needed
+    );
+
     // Enqueue jQuery
     wp_enqueue_script('jquery');
 
@@ -29,11 +45,29 @@ function marina_bay_scripts() {
         true
     );
 
-    // Enqueue custom script
+    // Choices.js JS from CDN (v9.0.1)
+    wp_enqueue_script(
+        'choices-js',
+        'https://cdn.jsdelivr.net/npm/choices.js@9.0.1/public/assets/scripts/choices.min.js',
+        array(), 
+        '9.0.1',
+        true      // Load in footer
+    );
+
+    // Flatpickr JS from CDN
+    wp_enqueue_script(
+        'flatpickr-js',
+        'https://cdn.jsdelivr.net/npm/flatpickr', // jsDelivr serves the minified version by default
+        array(), 
+        '4.6.13', // Current Flatpickr version, adjust if needed
+        true      // Load in footer
+    );
+
+    // Enqueue custom script for main site functionality
     wp_enqueue_script(
         'marina-bay-main',
         get_template_directory_uri() . '/js/main.js',
-        array('jquery', 'swiper-js'),
+        array('jquery', 'swiper-js'), 
         filemtime(get_template_directory() . '/js/main.js'),
         true
     );
@@ -1229,5 +1263,646 @@ function marina_bay_sort_jobs_by_order( $query ) {
     }
 }
 add_action( 'pre_get_posts', 'marina_bay_sort_jobs_by_order' );
+
+/**
+ * Register Events Custom Post Type and Taxonomy
+ */
+function marina_bay_register_events_post_type() {
+    // Register Event Category Taxonomy first
+    $category_labels = array(
+        'name'              => 'Event Categories',
+        'singular_name'     => 'Event Category',
+        'search_items'      => 'Search Categories',
+        'all_items'         => 'All Categories',
+        'parent_item'       => 'Parent Category',
+        'parent_item_colon' => 'Parent Category:',
+        'edit_item'         => 'Edit Category',
+        'update_item'       => 'Update Category',
+        'add_new_item'      => 'Add New Category',
+        'new_item_name'     => 'New Category Name',
+        'menu_name'         => 'Categories',
+    );
+
+    register_taxonomy('event_category', 'event', array(
+        'labels'            => $category_labels,
+        'hierarchical'      => true,
+        'show_ui'           => true,
+        'show_admin_column' => true,
+        'query_var'         => true,
+        'rewrite'           => array('slug' => 'event-category'),
+        'show_in_rest'      => true,
+    ));
+
+    // Register Events Post Type
+    $labels = array(
+        'name'               => 'Events',
+        'singular_name'      => 'Event',
+        'menu_name'          => 'Events',
+        'add_new'            => 'Add New Event',
+        'add_new_item'       => 'Add New Event',
+        'edit_item'          => 'Edit Event',
+        'new_item'           => 'New Event',
+        'view_item'          => 'View Event',
+        'search_items'       => 'Search Events',
+        'not_found'          => 'No events found',
+        'not_found_in_trash' => 'No events found in Trash',
+    );
+
+    $args = array(
+        'labels'             => $labels,
+        'public'             => true,
+        'publicly_queryable' => true,
+        'show_ui'            => true,
+        'show_in_menu'       => true,
+        'query_var'          => true,
+        'rewrite'            => array('slug' => 'events'),
+        'capability_type'    => 'post',
+        'has_archive'        => true,
+        'hierarchical'       => false,
+        'menu_position'      => 5,
+        'menu_icon'          => 'dashicons-calendar-alt',
+        'supports'           => array('title', 'editor', 'thumbnail', 'page-attributes'),
+        'show_in_rest'       => true,
+        'taxonomies'         => array('event_category'),
+    );
+
+    register_post_type('event', $args);
+
+    // Add default event category
+    if (!term_exists('Event', 'event_category')) {
+        wp_insert_term('Event', 'event_category');
+    }
+}
+add_action('init', 'marina_bay_register_events_post_type');
+
+/**
+ * Register ACF Fields for Events
+ */
+function marina_bay_register_events_fields() {
+    if (function_exists('acf_add_local_field_group')) {
+        
+        // Events Page Settings
+        acf_add_local_field_group(array(
+            'key' => 'group_events_page_settings',
+            'title' => 'Events Page Settings',
+            'fields' => array(
+                array(
+                    'key' => 'field_events_page_title',
+                    'label' => 'Page Title',
+                    'name' => 'events_page_title',
+                    'type' => 'text',
+                    'default_value' => 'Events',
+                    'required' => 1,
+                ),
+                array(
+                    'key' => 'field_events_page_subtitle',
+                    'label' => 'Page Subtitle',
+                    'name' => 'events_page_subtitle',
+                    'type' => 'text',
+                    'default_value' => 'Expect the Unexpected',
+                    'required' => 1,
+                ),
+                array(
+                    'key' => 'field_events_search_placeholder',
+                    'label' => 'Search Placeholder Text',
+                    'name' => 'events_search_placeholder',
+                    'type' => 'text',
+                    'default_value' => 'Search by keyword, artist or topic',
+                    'required' => 1,
+                ),
+                array(
+                    'key' => 'field_events_category_label',
+                    'label' => 'Category Dropdown Label',
+                    'name' => 'events_category_label',
+                    'type' => 'text',
+                    'default_value' => 'Category',
+                    'required' => 1,
+                ),
+                array(
+                    'key' => 'field_events_from_date_label',
+                    'label' => 'From Date Label',
+                    'name' => 'events_from_date_label',
+                    'type' => 'text',
+                    'default_value' => 'From Date',
+                    'required' => 1,
+                ),
+                array(
+                    'key' => 'field_events_until_date_label',
+                    'label' => 'Until Date Label',
+                    'name' => 'events_until_date_label',
+                    'type' => 'text',
+                    'default_value' => 'Until',
+                    'required' => 1,
+                ),
+                array(
+                    'key' => 'field_events_filter_button_text',
+                    'label' => 'Filter Button Text',
+                    'name' => 'events_filter_button_text',
+                    'type' => 'text',
+                    'default_value' => 'Filter Events',
+                    'required' => 1,
+                ),
+            ),
+            'location' => array(
+                array(
+                    array(
+                        'param' => 'page_template',
+                        'operator' => '==',
+                        'value' => 'page-events.php',
+                    ),
+                ),
+                array(
+                    array(
+                        'param' => 'post_template',
+                        'operator' => '==',
+                        'value' => 'page-events.php',
+                    ),
+                ),
+            ),
+        ));
+
+        // Individual Event Details
+        acf_add_local_field_group(array(
+            'key' => 'group_event_details',
+            'title' => 'Event Details',
+            'fields' => array(
+                array(
+                    'key' => 'field_event_subtitle',
+                    'label' => 'Event Subtitle',
+                    'name' => 'event_subtitle',
+                    'type' => 'text',
+                    'required' => 0,
+                ),
+                array(
+                    'key' => 'field_event_featured',
+                    'label' => 'Featured Event',
+                    'name' => 'event_featured',
+                    'type' => 'true_false',
+                    'ui' => 1,
+                    'default_value' => 0,
+                ),
+                array(
+                    'key' => 'field_event_status',
+                    'label' => 'Event Status',
+                    'name' => 'event_status',
+                    'type' => 'select',
+                    'choices' => array(
+                        'upcoming' => 'Upcoming',
+                        'past' => 'Past',
+                        'sold_out' => 'Sold Out',
+                        'cancelled' => 'Cancelled',
+                    ),
+                    'default_value' => 'upcoming',
+                    'required' => 1,
+                ),
+                array(
+                    'key' => 'field_event_date',
+                    'label' => 'Event Date',
+                    'name' => 'event_date',
+                    'type' => 'date_picker',
+                    'display_format' => 'd/m/Y',
+                    'return_format' => 'Y-m-d',
+                    'first_day' => 1,
+                    'required' => 1,
+                ),
+                array(
+                    'key' => 'field_event_start_time',
+                    'label' => 'Start Time',
+                    'name' => 'event_start_time',
+                    'type' => 'time_picker',
+                    'display_format' => 'H:i',
+                    'return_format' => 'H:i',
+                    'required' => 1,
+                ),
+                array(
+                    'key' => 'field_event_end_time',
+                    'label' => 'End Time',
+                    'name' => 'event_end_time',
+                    'type' => 'time_picker',
+                    'display_format' => 'H:i',
+                    'return_format' => 'H:i',
+                    'required' => 0,
+                ),
+                array(
+                    'key' => 'field_event_location',
+                    'label' => 'Event Location',
+                    'name' => 'event_location',
+                    'type' => 'text',
+                    'required' => 1,
+                ),
+                array(
+                    'key' => 'field_event_description',
+                    'label' => 'Event Description',
+                    'name' => 'event_description',
+                    'type' => 'wysiwyg',
+                    'tabs' => 'visual',
+                    'toolbar' => 'basic',
+                    'media_upload' => 0,
+                    'required' => 1,
+                ),
+                array(
+                    'key' => 'field_event_image',
+                    'label' => 'Event Image',
+                    'name' => 'event_image',
+                    'type' => 'image',
+                    'return_format' => 'array',
+                    'preview_size' => 'medium',
+                    'library' => 'all',
+                    'required' => 1,
+                ),
+                array(
+                    'key' => 'field_reservation_link_type',
+                    'label' => 'Reservation Link Type',
+                    'name' => 'reservation_link_type',
+                    'type' => 'select',
+                    'choices' => array(
+                        'email' => 'Email',
+                        'phone' => 'Phone',
+                    ),
+                    'default_value' => 'email',
+                    'required' => 1,
+                ),
+                array(
+                    'key' => 'field_reservation_email',
+                    'label' => 'Reservation Email',
+                    'name' => 'reservation_email',
+                    'type' => 'email',
+                    'conditional_logic' => array(
+                        array(
+                            array(
+                                'field' => 'field_reservation_link_type',
+                                'operator' => '==',
+                                'value' => 'email',
+                            ),
+                        ),
+                    ),
+                ),
+                array(
+                    'key' => 'field_reservation_phone',
+                    'label' => 'Reservation Phone',
+                    'name' => 'reservation_phone',
+                    'type' => 'text',
+                    'conditional_logic' => array(
+                        array(
+                            array(
+                                'field' => 'field_reservation_link_type',
+                                'operator' => '==',
+                                'value' => 'phone',
+                            ),
+                        ),
+                    ),
+                ),
+                array(
+                    'key' => 'field_additional_info',
+                    'label' => 'Additional Info / Notes',
+                    'name' => 'additional_info',
+                    'type' => 'textarea',
+                    'rows' => 4,
+                    'required' => 0,
+                ),
+            ),
+            'location' => array(
+                array(
+                    array(
+                        'param' => 'post_type',
+                        'operator' => '==',
+                        'value' => 'event',
+                    ),
+                ),
+            ),
+        ));
+
+        // Events FAQs
+        acf_add_local_field_group(array(
+            'key' => 'group_events_faqs',
+            'title' => 'Events FAQs',
+            'fields' => array(
+                array(
+                    'key' => 'field_events_faqs',
+                    'label' => 'FAQs',
+                    'name' => 'events_faqs',
+                    'type' => 'repeater',
+                    'layout' => 'table',
+                    'button_label' => 'Add FAQ',
+                    'sub_fields' => array(
+                        array(
+                            'key' => 'field_faq_question',
+                            'label' => 'Question',
+                            'name' => 'question',
+                            'type' => 'text',
+                            'required' => 1,
+                        ),
+                        array(
+                            'key' => 'field_faq_answer',
+                            'label' => 'Answer',
+                            'name' => 'answer',
+                            'type' => 'textarea',
+                            'rows' => 4,
+                            'required' => 1,
+                        ),
+                    ),
+                ),
+            ),
+            'location' => array(
+                array(
+                    array(
+                        'param' => 'page_template',
+                        'operator' => '==',
+                        'value' => 'page-events.php',
+                    ),
+                ),
+                array(
+                    array(
+                        'param' => 'post_template',
+                        'operator' => '==',
+                        'value' => 'page-events.php',
+                    ),
+                ),
+            ),
+        ));
+    }
+}
+add_action('acf/init', 'marina_bay_register_events_fields');
+
+/**
+ * Enqueue Events Page Scripts and Styles
+ */
+function marina_bay_enqueue_events_assets() {
+    // Check multiple conditions for events page, event archive, or single event
+    $is_events_page = false;
+    
+    if (is_page_template('page-events.php')) {
+        $is_events_page = true;
+    }
+    
+    if (is_page()) {
+        $template = get_page_template_slug();
+        if ($template === 'page-events.php') {
+            $is_events_page = true;
+        }
+        
+        $custom_template = get_post_meta(get_the_ID(), '_wp_page_template', true);
+        if ($custom_template === 'page-events.php') {
+            $is_events_page = true;
+        }
+    }
+
+    // Check for Event CPT archive
+    if (is_post_type_archive('event')) {
+        $is_events_page = true;
+    }
+
+    // Check for single Event CPT posts
+    if (is_singular('event')) {
+        $is_events_page = true;
+    }
+    
+    // Force load on any page with "events" in the title (for testing - consider removing for production)
+    if (!$is_events_page && is_page() && stripos(get_the_title(), 'events') !== false) {
+        $is_events_page = true;
+    }
+    
+    if ($is_events_page) {
+        // Enqueue Font Awesome for icons (ensure it's not enqueued multiple times if already global)
+        if (!wp_style_is('font-awesome', 'enqueued')) {
+            wp_enqueue_style('font-awesome', 'https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css', array(), '6.0.0');
+        }
+        
+        wp_enqueue_style('events-styles', get_template_directory_uri() . '/css/events.css', array('font-awesome'), '1.0');
+        // Ensure choices-js and flatpickr-js are dependencies for events.js
+        wp_enqueue_script('events-script', get_template_directory_uri() . '/js/events.js', array('choices-js', 'flatpickr-js'), '1.0', true);
+        
+        // Localize script for AJAX
+        wp_localize_script('events-script', 'eventsAjax', array(
+            'ajaxurl' => admin_url('admin-ajax.php'),
+            'nonce' => wp_create_nonce('events_filter_nonce')
+        ));
+        
+        // Debug info (remove in production)
+        if (current_user_can('administrator')) {
+            wp_add_inline_script('events-script', 'console.log("Events assets loaded successfully with Choices.js and Flatpickr dependencies.");', 'after');
+        }
+    }
+}
+add_action('wp_enqueue_scripts', 'marina_bay_enqueue_events_assets');
+
+/**
+ * AJAX Handler for Events Filtering
+ */
+function marina_bay_filter_events_ajax() {
+    // Verify nonce for security
+    if (!wp_verify_nonce($_POST['nonce'], 'events_filter_nonce')) {
+        wp_die('Security check failed');
+    }
+    
+    // Get filter parameters
+    $search = sanitize_text_field($_POST['search'] ?? '');
+    $category = sanitize_text_field($_POST['category'] ?? '');
+    $from_date = sanitize_text_field($_POST['from_date'] ?? '');
+    $until_date = sanitize_text_field($_POST['until_date'] ?? '');
+    
+    // Build query arguments
+    $args = array(
+        'post_type' => 'event',
+        'posts_per_page' => -1,
+        'meta_key' => 'event_date',
+        'orderby' => 'meta_value',
+        'order' => 'ASC',
+        'meta_query' => array(
+            array(
+                'key' => 'event_status',
+                'value' => 'upcoming',
+                'compare' => '='
+            )
+        )
+    );
+    
+    // Add search parameter
+    if (!empty($search)) {
+        $args['s'] = $search;
+    }
+    
+    // Add category filter
+    if (!empty($category)) {
+        $args['tax_query'] = array(
+            array(
+                'taxonomy' => 'event_category',
+                'field' => 'slug',
+                'terms' => $category
+            )
+        );
+    }
+    
+    // Add date range filter
+    if (!empty($from_date) || !empty($until_date)) {
+        $date_query = array('relation' => 'AND');
+        
+        if (!empty($from_date)) {
+            $date_query[] = array(
+                'key' => 'event_date',
+                'value' => $from_date,
+                'compare' => '>='
+            );
+        }
+        
+        if (!empty($until_date)) {
+            $date_query[] = array(
+                'key' => 'event_date',
+                'value' => $until_date,
+                'compare' => '<='
+            );
+        }
+        
+        if (isset($args['meta_query'])) {
+            $args['meta_query'] = array_merge($args['meta_query'], $date_query);
+        } else {
+            $args['meta_query'] = $date_query;
+        }
+    }
+    
+    // Execute query
+    $events_query = new WP_Query($args);
+    
+    $events_html = '';
+    
+    if ($events_query->have_posts()) {
+        while ($events_query->have_posts()) {
+            $events_query->the_post();
+            
+            // Get event data (same as in template)
+            $event_id = get_the_ID();
+            $event_subtitle = get_field('event_subtitle');
+            $event_date = get_field('event_date');
+            $event_start_time = get_field('event_start_time');
+            $event_end_time = get_field('event_end_time');
+            $event_location = get_field('event_location');
+            $event_description = get_field('event_description');
+            $event_image = get_field('event_image');
+            $event_featured = get_field('event_featured');
+            $event_status = get_field('event_status');
+            $reservation_type = get_field('reservation_link_type');
+            $reservation_email = get_field('reservation_email');
+            $reservation_phone = get_field('reservation_phone');
+            $additional_info = get_field('additional_info');
+            
+            // Get event categories
+            $event_categories = wp_get_post_terms($event_id, 'event_category');
+            $category_slugs = array();
+            $category_names = array();
+            
+            if (!empty($event_categories) && !is_wp_error($event_categories)) {
+                foreach ($event_categories as $category) {
+                    $category_slugs[] = $category->slug;
+                    $category_names[] = $category->name;
+                }
+            }
+            
+            // Format date for display
+            $date_obj = DateTime::createFromFormat('Y-m-d', $event_date);
+            $day_number = $date_obj->format('j');
+            $month_abbr = strtoupper($date_obj->format('M'));
+            $day_abbr = strtoupper($date_obj->format('D'));
+            
+            // Format time display
+            $time_display = $event_start_time;
+            if ($event_end_time) {
+                $time_display .= ' - ' . $event_end_time;
+            }
+            
+            $featured_class = $event_featured ? ' featured-event' : '';
+            $status_class = ' status-' . $event_status;
+            
+            // Build HTML for this event (same structure as template)
+            ob_start();
+            ?>
+            
+            <article class="event-item<?php echo $featured_class . $status_class; ?>" 
+                    data-event-id="<?php echo esc_attr($event_id); ?>"
+                    data-categories="<?php echo esc_attr(implode(',', $category_slugs)); ?>"
+                    data-date="<?php echo esc_attr($event_date); ?>"
+                    data-title="<?php echo esc_attr(get_the_title()); ?>"
+                    data-description="<?php echo esc_attr(wp_strip_all_tags($event_description)); ?>">
+                
+                <div class="event-date-display">
+                    <div class="event-day-number"><?php echo esc_html($day_number); ?></div>
+                    <div class="event-month-day">
+                        <span class="event-month"><?php echo esc_html($month_abbr); ?></span>
+                        <span class="event-day"><?php echo esc_html($day_abbr); ?></span>
+                    </div>
+                </div>
+                
+                <div class="event-content">
+                    <div class="event-details">
+                        <div class="event-meta">
+                            <span class="event-time">
+                                <i class="far fa-clock"></i>
+                                <?php echo esc_html($time_display); ?>
+                            </span>
+                            <span class="event-location-meta">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <?php echo esc_html($event_location); ?>
+                            </span>
+                            <?php if (!empty($category_names)) : ?>
+                                <span class="event-category-meta">
+                                    <?php echo esc_html(strtoupper(implode(', ', $category_names))); ?>
+                                </span>
+                            <?php endif; ?>
+                        </div>
+                        
+                        <h2 class="event-title"><?php the_title(); ?></h2>
+                        
+                        <?php if ($event_subtitle) : ?>
+                            <h3 class="event-subtitle"><?php echo esc_html($event_subtitle); ?></h3>
+                        <?php endif; ?>
+                        
+                        <div class="event-description">
+                            <?php echo wp_kses_post($event_description); ?>
+                        </div>
+                        
+                        <?php if ($additional_info) : ?>
+                            <div class="event-additional-info">
+                                <p><em><?php echo esc_html($additional_info); ?></em></p>
+                            </div>
+                        <?php endif; ?>
+                        
+                        <div class="event-actions">
+                            <?php if ($reservation_type === 'email' && $reservation_email) : ?>
+                                <a href="mailto:<?php echo esc_attr($reservation_email); ?>" class="reserve-btn reserve-email">
+                                    RESERVE YOUR SPOT
+                                </a>
+                            <?php elseif ($reservation_type === 'phone' && $reservation_phone) : ?>
+                                <a href="tel:<?php echo esc_attr($reservation_phone); ?>" class="reserve-btn reserve-phone">
+                                    RESERVE YOUR SPOT
+                                </a>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                    
+                    <?php if ($event_image) : ?>
+                        <div class="event-image">
+                            <img src="<?php echo esc_url($event_image['sizes']['large']); ?>" 
+                                 alt="<?php echo esc_attr($event_image['alt'] ?: get_the_title()); ?>"
+                                 loading="lazy">
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </article>
+            
+            <?php
+            $events_html .= ob_get_clean();
+        }
+        wp_reset_postdata();
+    }
+    
+    // Return response
+    wp_send_json_success(array(
+        'html' => $events_html,
+        'count' => $events_query->found_posts
+    ));
+}
+
+// Hook for logged in and non-logged in users
+add_action('wp_ajax_filter_events', 'marina_bay_filter_events_ajax');
+add_action('wp_ajax_nopriv_filter_events', 'marina_bay_filter_events_ajax');
 
 ?>

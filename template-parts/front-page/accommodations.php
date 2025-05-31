@@ -1,4 +1,9 @@
 <?php
+/**
+ * Accommodations Section Template
+ */
+
+
 $accommodations = array(
     array(
         'title' => 'DELUXE FULL VIEW',

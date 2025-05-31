@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 slideChange: function () {
                     console.log('Hero Swiper slide changed');
                     // Find the currently visible hero video by checking offsetParent
-                    const desktopVideo = document.querySelector('.hero-video-desktop');
+                    const desktopVideo = document.querySelector('.hero-video-desktop, .hero-video.hero-retreats-video');
                     const mobileVideo = document.querySelector('.hero-video-mobile');
                     const visibleVideo = (mobileVideo && mobileVideo.offsetParent !== null) ? mobileVideo : desktopVideo;
                     console.log('Visible video element (offsetParent check):', visibleVideo);
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
         const checkInitialVideoState = () => {
             console.log('Checking initial video state.');
             // Find the currently visible hero video by checking offsetParent
-            const desktopVideo = document.querySelector('.hero-video-desktop');
+            const desktopVideo = document.querySelector('.hero-video-desktop, .hero-video.hero-retreats-video');
             const mobileVideo = document.querySelector('.hero-video-mobile');
             const visibleVideo = (mobileVideo && mobileVideo.offsetParent !== null) ? mobileVideo : desktopVideo;
 
@@ -104,7 +104,7 @@ document.addEventListener('DOMContentLoaded', function() {
             videoPauseBtn.addEventListener('click', function() {
                 console.log('Pause button clicked.');
                 // Find the currently visible hero video by checking offsetParent
-                const desktopVideo = document.querySelector('.hero-video-desktop');
+                const desktopVideo = document.querySelector('.hero-video-desktop, .hero-video.hero-retreats-video');
                 const mobileVideo = document.querySelector('.hero-video-mobile');
                 const visibleVideo = (mobileVideo && mobileVideo.offsetParent !== null) ? mobileVideo : desktopVideo;
                 console.log('Visible video element on click (offsetParent check):', visibleVideo);
@@ -126,6 +126,16 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         }
+    }
+
+    // Initialize Choices.js for homepage select (if it exists)
+    const homepageSelect = document.getElementById('homepage-category-select');
+    if (homepageSelect && typeof Choices !== 'undefined') {
+        new Choices(homepageSelect, {
+            searchEnabled: false, // Common to disable search for simple selects
+            itemSelectText: '',
+            // Add any other specific Choices.js options for the homepage select here
+        });
     }
 
     // Accommodations Slider
@@ -311,6 +321,19 @@ document.addEventListener('DOMContentLoaded', function() {
                 e.preventDefault();
             }, { passive: false });
         }
+    }
+
+    // Initialize Choices.js for select elements within .reviews-filters (if they exist)
+    const reviewsFiltersContainer = document.querySelector('.reviews-filters');
+    if (reviewsFiltersContainer && typeof Choices !== 'undefined') {
+        const reviewSelects = reviewsFiltersContainer.querySelectorAll('select');
+        reviewSelects.forEach(selectElement => {
+            new Choices(selectElement, {
+                searchEnabled: false, // Typically false for filter dropdowns
+                itemSelectText: '',
+                // Add any other specific Choices.js options for review filters here
+            });
+        });
     }
 
     // Facilities Navigation

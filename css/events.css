@@ -1,0 +1,949 @@
+/*------------------------------------------------------------------
+  Events Page Styles - HIGH SPECIFICITY
+-------------------------------------------------------------------*/
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600&display=swap');
+
+/* Root Variables - Luxury Palette */
+:root {
+    /* Core Luxury Palette */
+    --luxury-bg-main: #f9f9f7; /* Very light, slightly warm off-white */
+    --luxury-bg-content: #ffffff;
+    --luxury-text-dark: #333333; /* Dark grey for primary text */
+    --luxury-text-medium: #666666; /* Medium grey for secondary text */
+    --luxury-text-light: #999999; /* Light grey for muted text/placeholders */
+    --luxury-border-soft: #eeeeee; /* Softer border color */
+    --luxury-border-strong: #dddddd; /* Slightly stronger for emphasis if needed */
+    --luxury-accent-gold: #c0a062; /* Muted gold accent */
+    --luxury-accent-dark: #4a4a4a; /* Dark charcoal as a secondary accent or for buttons */
+    --luxury-accent-mint-light: #e8f3ef; /* Light mint color */
+
+    /* Original variables mapped to new palette (or can be replaced directly in CSS) */
+    --primary-color: var(--luxury-accent-dark); /* Was #2c3e50 */
+    --secondary-color: var(--luxury-text-dark); /* Was #34495e */
+    --accent-color: var(--luxury-accent-gold);  /* Was #e74c3c */
+    --text-color: var(--luxury-text-dark);
+    --text-light: var(--luxury-text-medium);
+    --text-muted: var(--luxury-text-light);
+    --border-color: var(--luxury-border-soft);
+    --background-light: #f5f5f3; /* A slightly different light bg for sections like filters */
+    --white: #ffffff;
+    
+    --shadow: 0 5px 15px rgba(0, 0, 0, 0.05); /* Softer shadow */
+    --shadow-hover: 0 8px 25px rgba(0, 0, 0, 0.08); /* Slightly more pronounced hover shadow */
+    --transition: all 0.3s ease-in-out;
+    
+    /* Font Families (Unchanged, good for luxury) */
+    --font-heading: 'Playfair Display', serif;
+    --font-body: 'Montserrat', sans-serif;
+    --font-alt: 'Source Code Pro', monospace;
+    --font-luxury: 'Didot', serif;
+}
+
+/* Force events page styles with higher specificity */
+body .events-page-container,
+.page .events-page-container,
+.post .events-page-container {
+    padding: 0; /* Remove container top padding as header will be full height */
+    margin: 0;
+    overflow-x: hidden;
+    background-color: var(--luxury-bg-main);
+}
+
+/* Events Header with higher specificity - Styled like Careers Hero */
+body .events-header,
+.page .events-header {
+    background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('../images/offers/slider/offers-bg.png'); /* Added dark overlay and background image */
+    background-size: cover;
+    background-position: center;
+    color: var(--white); /* Text color to white */
+    height: 50vh; /* Adjusted height slightly, can be fine-tuned from your 40vh */
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 0; /* Was already there */
+    border-bottom: none; /* Removed border */
+    position: relative; /* Good for potential future overlays or elements */
+    padding: 20px 20px 50px 20px; /* Basic padding for content safety */
+}
+
+body .events-header::before,
+.page .events-header::before {
+    display: none; /* Ensure this is still hidden */
+}
+
+body .events-main-title,
+.page .events-main-title {
+    font-family: var(--font-luxury);
+    font-size: 3.5rem; /* Similar to a hero heading */
+    margin: 70px 0 10px; /* Adjusted margin */
+    text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* Added text shadow for readability */
+    color: var(--white);
+    font-size: 64px;
+    font-weight: 300;
+    line-height: 1.1;
+    font-style: italic;
+}
+
+body .events-subtitle,
+.page .events-subtitle {
+    font-family: var(--font-alt);
+    font-size: 1.2rem; /* Similar to a hero subheading */
+    font-weight: 400;
+    margin: 0 auto; /* Keep centering */
+    opacity: 0.9; /* Slight opacity for subtlety */
+    font-style: normal;
+    color: var(--white);
+    text-transform: uppercase;
+    max-width: 600px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.5); /* Added text shadow */
+}
+
+/* Events Filters Section with higher specificity */
+body .events-filters-section,
+.page .events-filters-section {
+    background: var(--luxury-bg-content);
+    padding: 40px 0;
+    margin-top: 0; /* Remove margin-top as header takes space */
+    margin-bottom: 50px;
+    border-bottom: 1px solid var(--luxury-border-soft);
+    position: relative; /* For potential z-index stacking if needed */
+    z-index: 2; /* Ensure filters are above the hero if any overlap happens due to negative margins etc. */
+}
+
+.events-filters-form {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.filter-row {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr 1fr auto;
+    gap: 20px;
+    align-items: end;
+}
+
+.filter-group {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+
+body.post-type-archive-event .filter-group select {
+    width: 100%;
+    padding: 15px 20px;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 4px;
+    background: #fff;
+    font-size: 14px;
+    color: #000;
+    cursor: pointer;
+    font-family: var(--font-alt);
+    text-transform: uppercase;
+}
+
+
+/* Filter Label Styling */
+.filter-label {
+    font-family: var(--font-body);
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--luxury-text-medium);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding-left: 2px;
+    display: block;
+    height: 1.2em; /* Give label a defined height for alignment reference */
+    line-height: 1.2em;
+}
+
+/* Adjustments for button group to align with inputs */
+.filter-group.button-group {
+    justify-content: flex-end; /* Keeps button at the bottom of its flex container */
+    gap: 0; /* Remove gap if no label, button directly at bottom */
+}
+
+.filter-group.button-group .filter-events-button {
+    margin-top: auto; /* Push button to bottom aligning with baseline of inputs */
+     /* This assumes the label height + gap is roughly 1.2em (label) + 8px (gap) */
+     /* A more direct approach is margin-top: auto; to push it to the bottom of the flex item. */
+     font-family: var(--font-alt);
+     text-transform: uppercase;
+}
+
+/* Search Input */
+.events-search-input {
+    width: 100%;
+    padding: 15px 20px;
+    border-radius: 0;
+    border: 1px solid var(--luxury-border-soft);
+    font-family: var(--font-alt);
+    text-transform: uppercase;
+    font-size: 1rem;
+    background: var(--luxury-bg-content);
+    color: var(--luxury-text-dark);
+    transition: var(--transition);
+    box-shadow: none;
+}
+
+.events-search-input:focus {
+    outline: none;
+    border-color: var(--luxury-accent-gold);
+    box-shadow: 0 0 0 2px rgba(192, 160, 98, 0.2); /* Subtle gold focus ring */
+}
+
+.events-search-input::placeholder {
+    color: var(--luxury-text-light);
+    font-style: normal; /* Changed from italic */
+}
+
+/* Category Select */
+.events-category-select {
+    width: 100%;
+    padding: 15px 20px;
+    border-radius: 0;
+    border: 1px solid var(--luxury-border-soft);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    background-color: var(--luxury-bg-content);
+    color: var(--luxury-text-dark);
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: none;
+    appearance: none;
+    background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 8" fill="none" stroke="%23666666" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M1 1l5 5 5-5"/></svg>'); /* Custom subtle arrow */
+    background-repeat: no-repeat;
+    background-position: right 15px center;
+    background-size: 12px;
+}
+
+.events-category-select:focus {
+    outline: none;
+    border-color: var(--luxury-accent-gold);
+    box-shadow: 0 0 0 2px rgba(192, 160, 98, 0.2);
+}
+
+/* Date Inputs */
+.events-date-input {
+    width: 100%;
+    padding: 14px 20px; /* Adjusted padding slightly for consistency */
+    border-radius: 0;
+    border: 1px solid var(--luxury-border-soft);
+    font-family: var(--font-alt);
+    font-size: 1rem;
+    background: var(--luxury-bg-content);
+    color: var(--luxury-text-dark);
+    transition: var(--transition);
+    box-shadow: none;
+    cursor: pointer;
+}
+
+.events-date-input:focus {
+    outline: none;
+    border-color: var(--luxury-accent-gold);
+    box-shadow: 0 0 0 2px rgba(192, 160, 98, 0.2);
+}
+
+/* Filter Button */
+.filter-events-button {
+    padding: 15px 30px;
+    border-radius: 0;
+    border: 1px solid #000;
+    background: #000;
+    color: var(--white);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 500; /* Slightly less bold */
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    white-space: nowrap;
+}
+
+.filter-events-button:hover {
+    background: var(--luxury-text-dark); /* Slightly lighter on hover */
+    border-color: var(--luxury-text-dark);
+    transform: none; /* Removed hover transform for subtlety */
+    box-shadow: none;
+}
+
+.filter-events-button i {
+    font-size: 1.1em;
+    color: var(--white); /* Ensure icon matches button text color */
+}
+
+/* Events List Section */
+.events-list-section {
+    padding: 0 0 80px; /* Removed top padding as filters section has bottom margin */
+}
+
+.events-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 50px; /* Increased gap */
+}
+
+/* Individual Event Item */
+.event-item {
+    display: grid;
+    grid-template-columns: auto 1fr; /* Keep existing grid for date */
+    gap: 30px; /* Reduced gap slightly */
+    border-radius: 0;
+    border: 1px solid var(--luxury-border-soft);
+    background: var(--luxury-bg-content);
+    box-shadow: var(--shadow); /* Use the new softer shadow */
+    padding: 30px;
+    transition: var(--transition);
+    position: relative;
+    overflow: hidden;
+}
+
+.event-item:hover {
+    transform: translateY(-3px); /* Softer hover transform */
+    box-shadow: var(--shadow-hover);
+    border-color: var(--luxury-border-strong); /* Subtle border highlight on hover */
+}
+
+.event-item.featured-event {
+    border: 1px solid var(--luxury-accent-gold);
+    box-shadow: 0 0 0 2px rgba(192, 160, 98, 0.2), var(--shadow); 
+    position: relative; /* Ensure this is set for z-index context of pseudo-element */
+}
+
+.event-item.featured-event::before {
+    content: 'FEATURED';
+    position: absolute;
+    top: 15px; 
+    right: -35px; 
+    background: var(--luxury-accent-gold);
+    color: var(--white);
+    padding: 6px 40px; 
+    font-family: var(--font-alt);
+    font-size: 0.75rem; 
+    font-weight: 600;
+    transform: rotate(45deg);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    letter-spacing: 0.5px;
+    z-index: 3; /* Ensure banner is above the image */
+    text-transform: uppercase; /* Added as per your previous changes */
+}
+
+/* Event Date Display */
+.event-date-display {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-width: 100px; /* Slightly reduced min-width */
+    border-radius: 0;
+    border: 1px solid var(--luxury-border-soft);
+    background: var(--luxury-bg-main); /* Light background, not gradient */
+    color: var(--luxury-text-dark);
+    padding: 20px 15px;
+    position: relative;
+    box-shadow: none; /* Removed shadow, rely on item shadow */
+}
+
+.event-day-number {
+    font-family: var(--font-heading);
+    font-size: 2.8rem; /* Slightly reduced */
+    font-weight: 600;
+    line-height: 1;
+    margin-bottom: 5px;
+    color: var(--luxury-accent-gold);
+}
+
+.event-month-day {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.event-month,
+.event-day {
+    font-family: var(--font-body);
+    font-size: 0.85rem; /* Slightly reduced */
+    font-weight: 500;
+    line-height: 1;
+    opacity: 1;
+    color: var(--luxury-text-medium);
+    text-transform: uppercase; /* Uppercase for a more formal look */
+}
+
+/* Event Content */
+.event-content {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 30px;
+    align-items: start;
+    position: relative; /* For z-index stacking context if needed */
+    z-index: 1; /* Ensure content is generally above default backgrounds */
+}
+
+.event-details {
+    flex: 1;
+}
+
+.event-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px 25px; /* Adjusted gap */
+    margin-bottom: 15px; /* Reduced margin */
+    font-family: var(--font-body);
+    font-size: 0.85rem; /* Slightly smaller */
+    color: var(--luxury-text-medium);
+}
+
+.event-meta span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-transform: uppercase;
+    font-family: var(--font-alt);
+}
+
+.event-meta i {
+    color: var(--luxury-accent-gold); /* Gold icons */
+    font-size: 1em;
+}
+
+.event-category-meta {
+    border-radius: 0;
+    border: 1px solid var(--luxury-border-soft);
+    padding: 0;
+    padding: 3px 10px;
+    font-family: var(--font-alt);
+    font-weight: 500;
+    color: var(--luxury-text-medium);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background: transparent;
+}
+
+.event-title {
+    font-family: var(--font-heading);
+    font-size: 2rem; /* Adjusted size */
+    font-weight: 600;
+    color: var(--luxury-text-dark);
+    margin: 0 0 10px; /* Reduced margin */
+    line-height: 1.3;
+}
+
+.event-subtitle {
+    font-family: var(--font-alt);
+    font-size: 1rem; /* Adjusted size */
+    font-weight: 400; /* Normal weight */
+    text-transform: uppercase;
+    color: var(--luxury-text-medium);
+    margin: 0 0 20px;
+    font-style: normal; /* Ensure normal style */
+    line-height: 1.5;
+}
+
+.event-description {
+    font-family: var(--font-body);
+    font-size: 0.95rem; /* Slightly smaller for balance */
+    line-height: 1.7;
+    color: var(--luxury-text-dark);
+    margin-bottom: 25px; /* Increased margin */
+}
+
+.event-description p {
+    margin: 0 0 1em;
+}
+
+.event-description p:last-child {
+    margin-bottom: 0;
+}
+
+.event-additional-info {
+    margin-bottom: 25px;
+}
+
+.event-additional-info p {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--luxury-text-light);
+    margin: 0;
+    font-style: italic;
+}
+
+/* Event Actions */
+.event-actions {
+    margin-top: 20px; /* Reduced margin */
+}
+
+.reserve-btn {
+    display: inline-block;
+    padding: 12px 25px; /* Adjusted padding */
+    border-radius: 0;
+    border: 1px solid var(--luxury-accent-gold);
+    background: var(--luxury-accent-gold);
+    color: var(--white);
+    text-decoration: none;
+    font-family: var(--font-body);
+    font-size: 0.9rem; /* Adjusted size */
+    font-weight: 500;
+    transition: var(--transition);
+    box-shadow: none; /* Removed shadow */
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+.reserve-btn:hover {
+    background: #b38e54; /* Slightly darker gold on hover */
+    border-color: #b38e54;
+    transform: none; /* No transform */
+    color: var(--white);
+    text-decoration: none;
+    box-shadow: none;
+}
+
+/* Event Image */
+.event-image {
+    width: 300px;
+    height: auto; /* Allow image to define its height for better aspect ratio */
+    max-height: 220px; /* Max height to prevent overly tall images */
+    border-radius: 0;
+    overflow: hidden;
+    box-shadow: none; /* Removed direct shadow, relies on item shadow */
+    border: 1px solid var(--luxury-border-soft);
+    position: relative; /* For z-index context */
+    z-index: 2; /* Image should be above content background but below banner */
+}
+
+.event-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+    display: block; /* Remove extra space below image */
+}
+
+.event-item:hover .event-image img {
+    transform: scale(1.03); /* Softer scale */
+}
+
+/* Loading States */
+.events-loading {
+    text-align: center;
+    padding: 60px 20px;
+}
+
+.loading-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid var(--border-color);
+    border-top: 4px solid var(--accent-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 20px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.events-loading p,
+.no-events-message p {
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    color: var(--text-light);
+    margin: 0;
+}
+
+.no-events-found p,
+.no-events-message p {
+    text-align: center;
+    padding: 60px 20px;
+    font-family: var(--font-body);
+    font-size: 1.1rem;
+    color: var(--text-light);
+}
+
+/* FAQs Section - Two Column Layout */
+.events-faqs-section {
+    background: var(--luxury-bg-content); /* Changed to white as per screenshot */
+    padding: 80px 0; /* Increased padding */
+    margin-top: 0;
+    border-top: 1px solid var(--luxury-border-soft);
+}
+
+.faq-layout-container {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    max-width: 1200px;
+    gap: 60px;
+    background-color: #f5f5f480;
+    margin: 0 auto;
+    padding: 30px;
+    align-items: flex-start;
+    border: 1px solid #e7e5e4;
+}
+
+/* FAQ Left Column */
+.faq-left-column {
+    padding-right: 30px; /* Optional: space if border is added between columns */
+}
+
+.faq-section-subtitle-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 10px;
+}
+
+.faq-section-subtitle-container .line {
+    flex-grow: 1;
+    height: 1px;
+    background-color: var(--luxury-border-soft);
+}
+
+.faq-section-subtitle {
+    font-family: var(--font-alt, 'Montserrat', sans-serif); /* Use alt font if defined */
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--luxury-text-medium);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    white-space: nowrap;
+}
+
+.faq-main-title {
+    font-family: var(--font-heading, 'Playfair Display', serif);
+    font-size: 3rem; /* Large serif title */
+    font-weight: 500;
+    color: var(--luxury-text-dark);
+    margin: 0 0 40px 0;
+    line-height: 1.2;
+}
+
+.faq-contact-prompt {
+    margin-top: 30px;
+}
+
+.faq-prompt-heading {
+    font-family: var(--font-alt, 'Montserrat', sans-serif);
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--luxury-text-dark);
+    text-transform: uppercase;
+    margin: 0 0 10px 0;
+    letter-spacing: 0.05em;
+}
+
+.faq-contact-prompt p {
+    font-family: var(--font-body, 'Montserrat', sans-serif);
+    font-size: 0.9rem;
+    color: var(--luxury-text-medium);
+    line-height: 1.6;
+    margin-bottom: 25px;
+}
+
+.btn.btn-contact-faq {
+    font-family: var(--font-alt, 'Montserrat', sans-serif);
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--luxury-text-dark);
+    background-color: transparent;
+    border: 1px solid var(--luxury-border-strong);
+    padding: 10px 25px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    transition: var(--transition);
+    display: inline-block;
+    text-decoration: none;
+}
+
+.btn.btn-contact-faq:hover {
+    background-color: var(--luxury-bg-main); /* Light hover */
+    color: var(--luxury-text-dark);
+    border-color: var(--luxury-border-strong);
+}
+
+/* FAQ Right Column (Accordion) */
+.faq-right-column .faqs-content {
+    /* max-width removed, column width controls it */
+}
+
+.faq-right-column .faq-item {
+    background: transparent; /* No background for item itself */
+    border-radius: 0;
+    margin-bottom: 0; /* Remove space, border will separate */
+    overflow: visible; /* Allow focus ring if any */
+    box-shadow: none;
+    border: none; /* Remove individual item border */
+    border-bottom: 1px solid var(--luxury-border-soft); /* Border between items */
+}
+
+.faq-right-column .faq-item:first-child {
+    border-top: 1px solid var(--luxury-border-soft); /* Top border for the first item */
+}
+
+.faq-right-column .faq-question {
+    width: 100%;
+    background: none;
+    border: none;
+    padding: 20px 0; /* Vertical padding, no horizontal as per screenshot */
+    text-align: left;
+    font-family: var(--font-body, 'Montserrat', sans-serif);
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--luxury-text-dark);
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.faq-right-column .faq-question:hover {
+    background: none;
+    color: var(--luxury-accent-gold); /* Gold hover for text */
+}
+
+.faq-right-column .faq-question.active {
+    background: none;
+    color: var(--luxury-accent-gold); /* Gold for active question text */
+    font-weight: 500;
+}
+
+.faq-right-column .faq-icon {
+    transition: var(--transition);
+    color: var(--luxury-text-medium);
+    font-size: 0.8em; /* Slightly smaller icon */
+}
+
+.faq-right-column .faq-question:hover .faq-icon,
+.faq-right-column .faq-question.active .faq-icon {
+    color: var(--luxury-accent-gold);
+}
+
+.faq-right-column .faq-question.active .faq-icon {
+    transform: rotate(180deg);
+}
+
+.faq-right-column .faq-answer {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease-in-out;
+}
+
+.faq-right-column .faq-answer.active {
+    max-height: 500px; 
+}
+
+.faq-right-column .faq-answer-content {
+    padding: 10px 0 25px 0; /* Vertical padding, no horizontal */
+    font-family: var(--font-body, 'Montserrat', sans-serif);
+    font-size: 0.95rem;
+    line-height: 1.7;
+    color: var(--luxury-text-medium); /* Lighter color for answer */
+}
+
+/* Remove .faqs-header and .faqs-title as they are replaced by the left column */
+.faqs-header, .faqs-title { display: none; }
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .events-main-title {
+        font-size: 3rem;
+    }
+    
+    .events-subtitle {
+        font-size: 1.2rem;
+    }
+    
+    .event-title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 968px) {
+    .filter-row {
+        grid-template-columns: 1fr 1fr;
+        gap: 15px;
+    }
+    
+    .search-group {
+        grid-column: 1 / -1;
+    }
+    
+    .button-group {
+        grid-column: 1 / -1;
+        text-align: center;
+    }
+    
+    .filter-events-button {
+        width: 100%;
+        justify-content: center;
+    }
+    
+    .event-item {
+        grid-template-columns: 1fr;
+        gap: 25px;
+    }
+    
+    .event-date-display {
+        min-width: auto;
+        width: fit-content;
+        margin: 0 auto;
+    }
+    
+    .event-content {
+        grid-template-columns: 1fr;
+        gap: 20px;
+        text-align: center;
+    }
+    
+    .event-image {
+        width: 100%;
+        max-width: 400px;
+        margin: 0 auto;
+    }
+    
+    .event-meta {
+        justify-content: center;
+    }
+
+    .faq-layout-container {
+        grid-template-columns: 1fr;
+    }
+
+    .faq-left-column {
+        padding-right: 0;
+    }
+
+    .faq-right-column {
+        padding-left: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .events-header {
+        padding: 40px 0 60px;
+        height: 35vh !important;
+    }
+    
+    .events-main-title {
+        font-size: 2.5rem;
+    }
+    
+    .events-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .events-filters-section {
+        padding: 30px 0;
+    }
+    
+    .filter-row {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+    
+    .events-search-input,
+    .events-category-select,
+    .events-date-input,
+    .filter-events-button {
+        padding: 12px 15px;
+        font-size: 0.95rem;
+    }
+    
+    .event-item {
+        padding: 20px;
+        gap: 20px;
+    }
+    
+    .event-title {
+        font-size: 1.8rem;
+    }
+    
+    .event-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .event-meta {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+    }
+    
+    .faq-question {
+        padding: 20px;
+        font-size: 1rem;
+    }
+    
+    .faq-answer-content {
+        padding: 0 20px 20px;
+        font-size: 0.95rem;
+    }
+    
+    .faqs-title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .events-main-title {
+        font-size: 2rem;
+    }
+    
+    .events-subtitle {
+        font-size: 1rem;
+    }
+    
+    .event-item {
+        padding: 15px;
+    }
+    
+    .event-title {
+        font-size: 1.5rem;
+    }
+    
+    .event-day-number {
+        font-size: 2.5rem;
+    }
+    
+    .event-date-display {
+        padding: 15px 10px;
+    }
+    
+    .reserve-btn {
+        padding: 12px 25px;
+        font-size: 0.9rem;
+    }
+}
+
+/* Additional style for select options (very limited) */
+.events-category-select option {
+    background-color: var(--luxury-bg-content);
+    color: var(--luxury-text-dark);
+    padding: 10px 20px; /* May not be applied by all browsers */
+}
+
+/* Styling for the date picker indicator (browser-specific) */
+.events-date-input::-webkit-calendar-picker-indicator {
+    /* Basic filter to try and match the theme - results vary */
+    filter: invert(0.6) sepia(0.2) saturate(5) hue-rotate(320deg) brightness(0.9);
+    opacity: 0.7;
+    cursor: pointer;
+}
+
+.events-date-input::-moz-calendar-picker-indicator { /* Hypothetical, Firefox doesn't support this well */
+    filter: invert(0.6) sepia(0.2) saturate(5) hue-rotate(320deg) brightness(0.9);
+    opacity: 0.7;
+    cursor: pointer;
+} 
