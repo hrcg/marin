@@ -8,7 +8,7 @@
 /* Root Variables - Luxury Palette */
 :root {
     /* Core Luxury Palette */
-    --luxury-bg-main: #f9f9f7; /* Very light, slightly warm off-white */
+    --luxury-bg-main: #f8f5ec; /* Very light, slightly warm off-white */
     --luxury-bg-content: #ffffff;
     --luxury-text-dark: #333333; /* Dark grey for primary text */
     --luxury-text-medium: #666666; /* Medium grey for secondary text */
@@ -27,7 +27,7 @@
     --text-light: var(--luxury-text-medium);
     --text-muted: var(--luxury-text-light);
     --border-color: var(--luxury-border-soft);
-    --background-light: #f5f5f3; /* A slightly different light bg for sections like filters */
+    --background-light: #f8f5ec; /* A slightly different light bg for sections like filters */
     --white: #ffffff;
     
     --shadow: 0 5px 15px rgba(0, 0, 0, 0.05); /* Softer shadow */
@@ -58,7 +58,7 @@ body .events-header,
     background-size: cover;
     background-position: center;
     color: var(--white); /* Text color to white */
-    height: 50vh; /* Adjusted height slightly, can be fine-tuned from your 40vh */
+    height: 40vh; /* Adjusted height slightly, can be fine-tuned from your 40vh */
     display: flex;
     flex-direction: column;
     justify-content: end;
@@ -77,12 +77,11 @@ body .events-header::before,
 
 body .events-main-title,
 .page .events-main-title {
-    font-family: var(--font-luxury);
-    font-size: 3.5rem; /* Similar to a hero heading */
+    font-family: var(--font-heading);
+    font-size: 36px; /* Similar to a hero heading */
     margin: 70px 0 10px; /* Adjusted margin */
     text-shadow: 1px 1px 3px rgba(0,0,0,0.5); /* Added text shadow for readability */
     color: var(--white);
-    font-size: 64px;
     font-weight: 300;
     line-height: 1.1;
     font-style: italic;
@@ -90,8 +89,8 @@ body .events-main-title,
 
 body .events-subtitle,
 .page .events-subtitle {
-    font-family: var(--font-alt);
-    font-size: 1.2rem; /* Similar to a hero subheading */
+    font-family: var(--font-body);
+    font-size: 16px; /* Similar to a hero subheading */
     font-weight: 400;
     margin: 0 auto; /* Keep centering */
     opacity: 0.9; /* Slight opacity for subtlety */
@@ -623,10 +622,10 @@ body.post-type-archive-event .filter-group select {
 
 .faq-main-title {
     font-family: var(--font-heading, 'Playfair Display', serif);
-    font-size: 3rem; /* Large serif title */
+    font-size: 54px; /* Large serif title */
     font-weight: 500;
     color: var(--luxury-text-dark);
-    margin: 0 0 40px 0;
+    margin: 0 0 20px 0;
     line-height: 1.2;
 }
 
@@ -688,9 +687,6 @@ body.post-type-archive-event .filter-group select {
     border-bottom: 1px solid var(--luxury-border-soft); /* Border between items */
 }
 
-.faq-right-column .faq-item:first-child {
-    border-top: 1px solid var(--luxury-border-soft); /* Top border for the first item */
-}
 
 .faq-right-column .faq-question {
     width: 100%;
@@ -759,7 +755,7 @@ body.post-type-archive-event .filter-group select {
 /* Responsive Design */
 @media (max-width: 1200px) {
     .events-main-title {
-        font-size: 3rem;
+        font-size: 28px;
     }
     
     .events-subtitle {
@@ -818,6 +814,11 @@ body.post-type-archive-event .filter-group select {
         justify-content: center;
     }
 
+
+    .faq-main-title {
+        font-size: 48px; /* Large serif title */
+    }
+
     .faq-layout-container {
         grid-template-columns: 1fr;
     }
@@ -834,11 +835,11 @@ body.post-type-archive-event .filter-group select {
 @media (max-width: 768px) {
     .events-header {
         padding: 40px 0 60px;
-        height: 35vh !important;
+        height: 25vh !important;
     }
     
     .events-main-title {
-        font-size: 2.5rem;
+        font-size: 24px;
     }
     
     .events-subtitle {
@@ -898,7 +899,7 @@ body.post-type-archive-event .filter-group select {
 
 @media (max-width: 480px) {
     .events-main-title {
-        font-size: 2rem;
+        font-size: 22px;
     }
     
     .events-subtitle {

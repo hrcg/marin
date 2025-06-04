@@ -41,6 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     altInput: true, // Show a human-friendly date format to the user
                     altFormat: "F j, Y", // Example: June 1, 2024
                     minDate: "today",
+                    placeholder: fromDateInput.dataset.placeholder || "From Date", // Use data attribute
                     onChange: function(selectedDates, dateStr, instance) {
                         // If untilDateInput exists and its current date is before fromDateInput
                         if (untilDateInput._flatpickr && selectedDates[0] > untilDateInput._flatpickr.selectedDates[0]) {
@@ -59,6 +60,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     altInput: true,
                     altFormat: "F j, Y",
                     minDate: "today",
+                    placeholder: untilDateInput.dataset.placeholder || "Until Date", // Use data attribute
                     onChange: function(selectedDates, dateStr, instance) {
                         // If fromDateInput exists and its current date is after untilDateInput
                         if (fromDateInput._flatpickr && selectedDates[0] < fromDateInput._flatpickr.selectedDates[0]) {

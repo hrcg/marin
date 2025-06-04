@@ -13,6 +13,7 @@
         <div class="content-column">
             <h2 class="column-title">Meetings & Conferences</h2>
             <p class="column-text">Marina Bay Resort & Casino offers sophisticated, state-of-the-art meeting facilities designed to accommodate events of any scale. From executive board meetings to international conferences, our versatile spaces and professional team deliver exceptional experiences that combine luxury with functionality, ensuring your business objectives are met with unparalleled style.</p>
+            <a href="/book" class="btn btn-outline-primary mt-2">Book Now</a>
         </div>
     </div>
 </section>

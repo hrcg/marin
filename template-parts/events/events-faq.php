@@ -22,7 +22,7 @@
                 <div class="faq-contact-prompt">
                     <h5 class="faq-prompt-heading">NUK JENI TË QARTË?</h5>
                     <p>Nuk mund të gjeni përgjigjen që kërkoni? Ju lutemi kontaktoni me shërbimin tonë të klientëve.</p>
-                    <a href="#" class="btn btn-contact-faq">Na Kontaktoni</a> <?php // Replace # with actual contact page link ?>
+                    <a href="/contact" class="btn btn-contact-faq">Na Kontaktoni</a> <?php // Replace # with actual contact page link ?>
                 </div>
             </div>
 

@@ -693,7 +693,7 @@ body {
     }
 
     .mobile-nav #mobile-menu li {
-        margin-bottom: 10px;
+        margin-bottom: 5px;
     }
 
     .mobile-nav #mobile-menu li a {
@@ -773,18 +773,25 @@ body.page-template-page-giftcards .hero-section {
 
 .offers-hero-heading {
     color: #ffffff;
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Playfair Display', sans-serif;
     font-size: 32px;
-    font-weight: 600;
+    font-weight: 300;
     margin: 0;
+    font-style: italic;
+    margin-bottom: 10px;
 }
 
 .offers-hero-subheading{
+    font-size: 16px;
+    font-weight: 400;
+    margin: 0 auto;
+    opacity: 0.9;
+    font-family: 'Montserrat', sans-serif;
+    font-style: normal;
     color: #ffffff;
-    font-family: 'Playfair Display', sans-serif;
-    font-size: 12px;
-    font-weight: 600;
-    margin-bottom: 10px;
+    text-transform: uppercase;
+    max-width: 600px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 }
 
 @media (max-width: 768px) {
@@ -7340,7 +7347,7 @@ a.item-value:hover {
     display: grid;
     grid-template-columns: 2fr 1fr 1fr 80px;
     padding: 1rem;
-    border-top: 1px solid #eee;
+    border-top: 1px solid #e7e5e4;
     align-items: center;
 }
 
@@ -7967,7 +7974,7 @@ a.item-value:hover {
 /* Responsive Job Grid Styles */
 @media (max-width: 600px) {
     .jobs-grid {
-        border: 1px solid #000;
+        border: 1px solid #e7e5e4;
     }
 
     .jobs-header {
@@ -7978,18 +7985,18 @@ a.item-value:hover {
         display: block;
         padding: 1.5rem 0.75rem;
         border-top: none;
-        border-bottom: 1px solid #000;
+        border-bottom: 1px solid #e7e5e4;
     }
 
     .job-item:first-of-type {
-        border-top: 1px solid #000;
+        border-top: 1px solid #e7e5e4;
     }
 
     .job-item .col {
         display: flex;
         justify-content: space-between;
         padding: 0.5rem 0;
-        border-bottom: 1px dashed #eee;
+        border-bottom: 1px dashed #e7e5e4;
         align-items: center;
     }
 
@@ -8000,7 +8007,7 @@ a.item-value:hover {
 
     .job-item .col::before {
         content: attr(data-label);
-        font-weight: 600;
+        font-weight: 500;
         padding-right: 1rem;
         min-width: 80px;
         text-align: left;

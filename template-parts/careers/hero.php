@@ -12,8 +12,8 @@
             <div class="swiper-slide">
                 <img src="<?php echo get_template_directory_uri(); ?>/images/offers/slider/offers-bg.png" alt="Careers page background image Black" class="hero-image">
                 <div class="offers-hero-content">
-                    <h3 class="offers-hero-subheading">Grow your career with us</h3>
                     <h1 class="offers-hero-heading">Careers</h1>
+                    <h3 class="offers-hero-subheading">Grow your career with us</h3>
                 </div>
             </div>
         </div>

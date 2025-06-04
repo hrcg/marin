@@ -55,14 +55,18 @@ $until_date_placeholder_attr = $until_date_label_text;
                     </select>
                 </div>
                 
-                <div class="filter-group date-group">
-                    <label for="events-from-date" class="filter-label"><?php echo esc_html(strtoupper($from_date_label_text)); ?></label>
-                    <input type="date" id="events-from-date" class="events-date-input" placeholder="<?php echo esc_attr($from_date_placeholder_attr); ?>">
+                <div class="filter-input-group date-filter-group">
+                    <label for="events-from-date" class="sr-only"><?php echo esc_html($from_date_label_text); ?></label>
+                    <input type="text" id="events-from-date" class="events-date-input" 
+                           placeholder="<?php echo esc_attr($from_date_placeholder_attr); ?>" 
+                           data-placeholder="<?php echo esc_attr($from_date_placeholder_attr); ?>">
                 </div>
                 
-                <div class="filter-group date-group">
-                    <label for="events-until-date" class="filter-label"><?php echo esc_html(strtoupper($until_date_label_text)); ?></label>
-                    <input type="date" id="events-until-date" class="events-date-input" placeholder="<?php echo esc_attr($until_date_placeholder_attr); ?>">
+                <div class="filter-input-group date-filter-group">
+                    <label for="events-until-date" class="sr-only"><?php echo esc_html($until_date_label_text); ?></label>
+                    <input type="text" id="events-until-date" class="events-date-input" 
+                           placeholder="<?php echo esc_attr($until_date_placeholder_attr); ?>" 
+                           data-placeholder="<?php echo esc_attr($until_date_placeholder_attr); ?>">
                 </div>
                 
                 <div class="filter-group button-group">

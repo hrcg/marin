@@ -24,7 +24,7 @@
                     
                     <p>Let the waves whisper tranquility, let luxury embrace you, and let the Riviera become your personal paradise.</p>
                 </div>
-                <a href="#explore-venues" class="btn btn-outline-primary mt-2">Book Now</a>
+                <a href="/book" class="btn btn-outline-primary mt-2">Book Now</a>
             </div>
             
             <div class="luxury-image">
