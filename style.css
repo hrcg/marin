@@ -754,6 +754,15 @@ body.page-template-page-careers .hero-section {
     height: 40vh;
 }
 
+body.page-template-page-policies .hero-section {
+    height: 40vh;
+}
+
+/* Book Now Hero Section */
+body.page-template-page-book-now .hero-section {
+    height: 40vh;
+}
+
 body.page-template-page-giftcards .hero-section {
     height: 40vh;
     margin-bottom: 60px;
@@ -806,6 +815,16 @@ body.page-template-page-giftcards .hero-section {
     body.page-template-page-careers .hero-section {
         height: 25vh;
     }
+
+    body.page-template-page-policies .hero-section {
+        height: 25vh;
+    }
+
+    /* Book Now Hero Section */
+    body.page-template-page-book-now .hero-section {
+        height: 30vh;
+    }
+
 
     .hero-retreats-video {
         object-fit: cover !important;
@@ -8078,6 +8097,13 @@ a.item-value:hover {
     z-index: 99;
 }
 
+.overlay-text-book-now { 
+    top: 78%;
+    left: 29%;
+    text-align: center;
+}
+
+
 .retreats-hero-text-overlay .hero-main-heading {
     font-size: 48px; /* Adjust as needed */
     font-weight: bold;
@@ -8093,6 +8119,12 @@ a.item-value:hover {
         position: absolute;
         top: 25%;
         max-width: 400px; /* Adjust as needed */
+    }
+    .overlay-text-book-now{
+        top: 75%;
+        left: 5%;
+        max-width: 300px;
+        text-align: left;
     }
     .retreats-hero-icons-container .hero-icon span {
         font-size: 9px !important; /* Adjust as needed */

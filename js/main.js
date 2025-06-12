@@ -18,34 +18,26 @@ document.addEventListener('DOMContentLoaded', function() {
                     this.pagination.update();
                 },
                 slideChange: function () {
-                    console.log('Hero Swiper slide changed');
                     // Find the currently visible hero video by checking offsetParent
                     const desktopVideo = document.querySelector('.hero-video-desktop, .hero-video.hero-retreats-video');
                     const mobileVideo = document.querySelector('.hero-video-mobile');
                     const visibleVideo = (mobileVideo && mobileVideo.offsetParent !== null) ? mobileVideo : desktopVideo;
-                    console.log('Visible video element (offsetParent check):', visibleVideo);
                     const videoPauseBtn = document.querySelector('.video-pause-btn');
                     
                     if (visibleVideo && videoPauseBtn) {
-                        console.log('Video and button found.');
-                        console.log('Previous slide index:', this.previousIndex, 'Current slide index:', this.activeIndex);
                         // Reset video and button state when leaving video slide
                         if (this.previousIndex === 0 && this.activeIndex !== 0) { 
-                            console.log('Slid away from video slide.');
                             if (!visibleVideo.paused) {
-                                console.log('Video was playing, attempting to keep playing (Swiper might override)');
                                 // visibleVideo.play(); // Re-enable if needed, but Swiper might pause it anyway
                             }
                             // The button state doesn't need resetting here as it reflects the video's state
                         }
                         // Pause video if sliding away from the video slide
                         if (this.activeIndex !== 0 && this.previousIndex === 0) {
-                            console.log('Attempting to pause video due to slide change.');
                             visibleVideo.pause();
                             videoPauseBtn.classList.add('paused');
                         }
                     } else {
-                        console.log('Visible video or pause button not found.');
                     }
                     
                     // Force pagination update after slide change
@@ -59,40 +51,32 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Ensure button state matches initial video state AND try to play if paused on slide 0
         const checkInitialVideoState = () => {
-            console.log('Checking initial video state.');
             // Find the currently visible hero video by checking offsetParent
             const desktopVideo = document.querySelector('.hero-video-desktop, .hero-video.hero-retreats-video');
             const mobileVideo = document.querySelector('.hero-video-mobile');
             const visibleVideo = (mobileVideo && mobileVideo.offsetParent !== null) ? mobileVideo : desktopVideo;
 
-            console.log('Visible video for initial check (offsetParent check):', visibleVideo);
 
             if (visibleVideo && videoPauseBtn) {
                 // Check if the video is paused AND we are on the first slide (realIndex accounts for loop)
                 if (visibleVideo.paused && heroSwiper && heroSwiper.realIndex === 0) {
-                    console.log('Initial state is paused on slide 0, attempting to play...');
                     // Attempt to play the video programmatically
                     visibleVideo.play().then(() => {
-                        console.log('Autoplay successful via JS.');
                         videoPauseBtn.classList.remove('paused');
                         videoPauseBtn.setAttribute('aria-label', 'Pause video');
                     }).catch(error => {
-                        console.error('Autoplay failed or was interrupted:', error);
                         // If play() fails, ensure the button reflects the paused state
                         videoPauseBtn.classList.add('paused');
                         videoPauseBtn.setAttribute('aria-label', 'Play video');
                     });
                 } else if (visibleVideo.paused) {
-                     console.log('Initial state is paused (or not on slide 0), updating button.');
                      videoPauseBtn.classList.add('paused');
                      videoPauseBtn.setAttribute('aria-label', 'Play video');
                 } else {
-                    console.log('Initial state is playing, updating button.');
                     videoPauseBtn.classList.remove('paused');
                     videoPauseBtn.setAttribute('aria-label', 'Pause video');
                 }
             } else {
-                 console.log('Visible video or pause button not found for initial check.');
             }
         };
 
@@ -101,28 +85,22 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Click handler for the pause button (should remain)
         if (videoPauseBtn) {
-            videoPauseBtn.addEventListener('click', function() {
-                console.log('Pause button clicked.');
+            videoPauseBtn.addEventListener('click', function() {    
                 // Find the currently visible hero video by checking offsetParent
                 const desktopVideo = document.querySelector('.hero-video-desktop, .hero-video.hero-retreats-video');
                 const mobileVideo = document.querySelector('.hero-video-mobile');
                 const visibleVideo = (mobileVideo && mobileVideo.offsetParent !== null) ? mobileVideo : desktopVideo;
-                console.log('Visible video element on click (offsetParent check):', visibleVideo);
                 if (visibleVideo) {
-                    console.log('Video is currently paused:', visibleVideo.paused);
                     if (visibleVideo.paused) {
-                        console.log('Attempting to play video.');
                         visibleVideo.play().catch(error => console.error('Play error:', error));
                         this.classList.remove('paused');
                         this.setAttribute('aria-label', 'Pause video');
                     } else {
-                        console.log('Attempting to pause video.');
                         visibleVideo.pause();
                         this.classList.add('paused');
                         this.setAttribute('aria-label', 'Play video');
                     }
                 } else {
-                    console.log('Visible video not found on click.');
                 }
             });
         }

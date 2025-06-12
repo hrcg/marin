@@ -32,9 +32,7 @@ What do you want more in life than being at Marina?',
     ),
     array(
         'title' => 'Weddings',
-        'description' => 'Celebrate your love at the most unique and romantic location — our exclusive Helicopter Field. Set against the stunning backdrop of the sparkling sea and breathtaking sunsets, this spacious 360 m² helipad transforms into a dreamy wedding venue, offering both adventure and elegance. Picture yourself saying "I do" as the waves softly kiss the shore, and the golden light bathes your special day in warmth and beauty.
-
-',
+        'description' => 'For a truly unforgettable wedding, say "I do" at our exclusive Helicopter Field. This 360 m² helipad offers a unique blend of elegance and adventure, with the sparkling sea and breathtaking sunsets as your stunning backdrop.',
         'image' => get_theme_file_uri('/images/front-page/facilities/_N4A8694 copy.webp'),
         'link' => '/wedding',
     )

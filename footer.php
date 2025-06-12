@@ -12,6 +12,8 @@
                     <p href="tel:+35533410000" class="phone">P +355 33 41 0000</p>
                     <p class="general-info">Reservation & General Info: <a href="mailto:info@marinabay.al">info@marinabay.al</a></p>
                     <a href="#" class="factsheet">Factsheet</a>
+                    <span style="margin: 0 10px;">|</span>
+                    <a href="/terms-conditions" class="factsheet">Terms and Conditions</a>
                 </div>
             </div>
 

@@ -16,6 +16,9 @@ get_template_part( 'template-parts/book-now/hero' );
 
     // Entry Section
     get_template_part( 'template-parts/book-now/book-engine' );
+    
+    // Booking Engine Section
+    get_template_part( 'template-parts/book-now/booking-engine' );
 
     ?>
 </main>

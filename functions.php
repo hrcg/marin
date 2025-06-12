@@ -1906,3 +1906,4 @@ add_action('wp_ajax_filter_events', 'marina_bay_filter_events_ajax');
 add_action('wp_ajax_nopriv_filter_events', 'marina_bay_filter_events_ajax');
 
 ?>
+
